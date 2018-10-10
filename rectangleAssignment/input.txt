@@ -1,0 +1,10 @@
+filled|3|4
+filled|5|5
+filled|6|6
+empty|4|4
+empty|2|2
+empty|9|9
+alternating|3|3
+alternating|9|9
+alternating|2|4
+alternating|2|1
