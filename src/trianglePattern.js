@@ -10,17 +10,21 @@ const generateTriangle=function(height) {
   let delimiter="";
   for(let count=0;count<height;count++) {
 
-    if(alignment=="left") {
+    if(alignType=="left") {
       output+=delimiter+repeatString(count+1,"*");
       delimiter="\n";
     }
  
-    if(alignment=="right") {
+    if(alignType=="right") {
         output+=repeatString((height-count-1)," ") + repeatString(count+1,"*")
-        output+="\n";
+      output+='\n';
     }
   }
   return output;
 }
-alignment=process.argv[2];
-console.log(generateTriangle(+process.argv[3]));
+const main = function () {
+ // alignments['left'],alignments['right'];
+  alignType=process.argv[2];
+  console.log(generateTriangle(+process.argv[3]));
+}
+main();
