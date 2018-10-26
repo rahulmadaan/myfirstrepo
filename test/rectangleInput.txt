@@ -7,4 +7,3 @@ empty|9|9
 alternating|3|3
 alternating|9|9
 alternating|2|4
-alternating|2|1
