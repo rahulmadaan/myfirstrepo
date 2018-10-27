@@ -7,6 +7,7 @@ const repeat=function(symbol,length) {
   }
   return output;
 }
+
 const generateLine=function(endChars, middleChars, lengthOfLine) {
   let line="";
   line += endChars;
@@ -14,6 +15,8 @@ const generateLine=function(endChars, middleChars, lengthOfLine) {
   line += endChars;
   return line;
 }
+
+/*------------------------------------------------DIAMOND---------------------------------------------- */
 /*-----------Generates Filled Diamond--------------- */
 const generateFilledDiamond=function(height) {
   let upperPart = "";
@@ -76,19 +79,77 @@ const lowerAngledDiamond=function(height) {
   lowerPart+="\n"+repeat(" ",Math.floor(height/2))+"*";
   return lowerPart;
 }
-/*-------------End of Angled Diamond---------------- */
+/*------------------------------------------------RECTANGLE---------------------------------------------- */
+/*-------------Filled Rectangle---------------- */
+const filledRectangle = function(width,height) {
+  let symbol="*";
+  let output = '';
+  let delimiter = '';
+  for(let count=1;count<=height;count++) {
+    output=output+delimiter+ repeat(symbol,width);
+    delimiter="\n";
+  }
+  return output;
+}
 
-let typeOfDiamond=process.argv[2];
-let heightOfDiamond=+process.argv[3];
+/*-------------Empty Rectangle---------------- */
+const emptyRectangle = function(width,height) {
 
-if(typeOfDiamond=="filled"){
-  console.log(generateFilledDiamond(heightOfDiamond));
+  let line="", symbol="*";
+  let middleLines = '';
+  let delimiter = '\n';
+  let upperLine = repeat(symbol,width);
+  let bottomLine = delimiter+ repeat(symbol,width);
+  for(let count=1;count<=height - 2;count++) {
+    middleLines=middleLines+delimiter+ generateLine(symbol,' ',width);
+  }
+  return upperLine + middleLines + bottomLine;
 }
-if(typeOfDiamond=="hollow"){
-  console.log(generateHollowDiamond(heightOfDiamond));
+
+/*-------------Alternating Rectangle---------------- */
+const alternatingRectangle = function(width,height) {
+  let line="", symbol="*";
+  let output="";
+  let delimiter = '';
+  for(let heightDraw=1;heightDraw<=height; heightDraw++) {
+    output=output+delimiter+ repeat(symbol,width);
+    symbol="*";
+    if(heightDraw%2!=0) {
+      symbol="-";
+    }
+    delimiter = '\n';
+  }
+  return output;
 }
-if(typeOfDiamond=="angled"){
-  console.log(generateAngledDiamond(heightOfDiamond));
+/*------------------------------------------------TRIANGLE---------------------------------------------- */
+const generateTriangle=function(alignType,height) {
+  let output="";
+  let delimiter="";
+  for(let count=0;count<height;count++) {
+
+    /*-------------Left Triangle---------------- */
+    if(alignType=="left") {
+      output+=delimiter+repeat('*',count+1);
+      delimiter="\n";
+    }
+
+    /*-------------Right Triangle---------------- */
+    if(alignType=="right") {
+      output+=repeat(' ',(height-count-1)) + repeat('*',count+1);
+      output+='\n';
+    }
+  }
+  return output;
 }
-exports.repeat=repeat;
-exports.generateLine=generateLine;
+
+module.exports = {
+  repeat,
+  generateLine,
+  generateAngledDiamond,
+  generateHollowDiamond,
+  generateFilledDiamond,
+  filledRectangle,
+  emptyRectangle,
+  alternatingRectangle,
+  generateTriangle
+}
