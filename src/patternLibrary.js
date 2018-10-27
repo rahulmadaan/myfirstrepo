@@ -17,6 +17,19 @@ const generateLine=function(endChars, middleChars, lengthOfLine) {
 }
 
 /*------------------------------------------------DIAMOND---------------------------------------------- */
+const createDiamondOfType = function(type,heightOfDiamond) {
+
+   if(type=="filled"){
+    return generateFilledDiamond(heightOfDiamond);
+  }
+  if(type=="hollow"){
+    return generateHollowDiamond(heightOfDiamond);
+  }
+  if(type=="angled"){
+    return generateAngledDiamond(heightOfDiamond);
+  }
+}
+
 /*-----------Generates Filled Diamond--------------- */
 const generateFilledDiamond=function(height) {
   let upperPart = "";
@@ -81,6 +94,18 @@ const lowerAngledDiamond=function(height) {
 }
 /*------------------------------------------------RECTANGLE---------------------------------------------- */
 /*-------------Filled Rectangle---------------- */
+const createRectangleOfType = function(type,width,height) {
+    if(type=="filled"){
+    return filledRectangle(width,height);
+  }
+  if(type=="empty"){
+    return emptyRectangle(width,height);
+  }
+  if(type=="alternating"){
+    return alternatingRectangle(width,height);
+  }
+}
+
 const filledRectangle = function(width,height) {
   let symbol="*";
   let output = '';
@@ -122,7 +147,7 @@ const alternatingRectangle = function(width,height) {
   return output;
 }
 /*------------------------------------------------TRIANGLE---------------------------------------------- */
-const generateTriangle=function(alignType,height) {
+const createTriangleOfType=function(alignType,height) {
   let output="";
   let delimiter="";
   for(let count=0;count<height;count++) {
@@ -130,14 +155,13 @@ const generateTriangle=function(alignType,height) {
     /*-------------Left Triangle---------------- */
     if(alignType=="left") {
       output+=delimiter+repeat('*',count+1);
-      delimiter="\n";
     }
 
     /*-------------Right Triangle---------------- */
     if(alignType=="right") {
-      output+=repeat(' ',(height-count-1)) + repeat('*',count+1);
-      output+='\n';
+      output+=delimiter+repeat(' ',(height-count-1)) + repeat('*',count+1);
     }
+    delimiter = '\n';
   }
   return output;
 }
@@ -145,11 +169,7 @@ const generateTriangle=function(alignType,height) {
 module.exports = {
   repeat,
   generateLine,
-  generateAngledDiamond,
-  generateHollowDiamond,
-  generateFilledDiamond,
-  filledRectangle,
-  emptyRectangle,
-  alternatingRectangle,
-  generateTriangle
+  createDiamondOfType,
+  createTriangleOfType,
+  createRectangleOfType
 }
