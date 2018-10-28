@@ -1,21 +1,4 @@
-const repeat=function(symbol,length) {
-  let lineNumber=1;
-  let output="";
-  while(lineNumber<=length) {
-    output+=symbol;
-    lineNumber++;
-  }
-  return output;
-}
-
-const generateLine=function(endChars, middleChars, lengthOfLine) {
-  let line="";
-  line += endChars;
-  line += repeat( middleChars , lengthOfLine-2 );
-  line += endChars;
-  return line;
-}
-
+let {repeat,generateLine} = require('./utilLib.js');
 /*------------------------------------------------DIAMOND---------------------------------------------- */
 const createDiamondOfType = function(type,heightOfDiamond) {
 
@@ -167,9 +150,7 @@ const createTriangleOfType=function(alignType,height) {
 }
 
 module.exports = {
-  repeat,
-  generateLine,
   createDiamondOfType,
   createTriangleOfType,
-  createRectangleOfType
+  createRectangleOfType,
 }
