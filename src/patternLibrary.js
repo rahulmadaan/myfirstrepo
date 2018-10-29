@@ -150,7 +150,15 @@ const createTriangleOfType=function(alignType,height) {
 }
 
 module.exports = {
-  createDiamondOfType,
-  createTriangleOfType,
   createRectangleOfType,
+   filledRectangle,
+   emptyRectangle,
+   alternatingRectangle,
+
+  createDiamondOfType,
+   generateFilledDiamond,
+   generateHollowDiamond,
+   generateAngledDiamond,
+
+  createTriangleOfType,
 }
